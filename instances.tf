@@ -53,3 +53,31 @@ resource "libvirt_domain" "nomad2" {
     autoport = true
   }
 }
+
+resource "libvirt_domain" "puppet" {
+  name   = "puppet"
+  memory = "4096"
+  vcpu   = 1
+
+  cloudinit = libvirt_cloudinit_disk.puppetinit.id
+
+  network_interface {
+    network_name = "default"
+  }
+
+  disk {
+    volume_id = libvirt_volume.puppet-volume.id
+  }
+
+  console {
+    type = "pty"
+    target_type = "serial"
+    target_port = "0"
+  }
+
+  graphics {
+    type = "spice"
+    listen_type = "address"
+    autoport = true
+  }
+}

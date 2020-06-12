@@ -15,3 +15,9 @@ resource "libvirt_volume" "nomad2-volume" {
   pool = libvirt_pool.nomad-pool.name
   source = "https://cloud-images.ubuntu.com/focal/20200611/focal-server-cloudimg-amd64.img"
 }
+
+resource "libvirt_volume" "puppet-volume" {
+  name = "puppet.qcow2"
+  pool = libvirt_pool.nomad-pool.name
+  source = "https://cloud-images.ubuntu.com/focal/20200611/focal-server-cloudimg-amd64.img"
+}
